@@ -690,9 +690,17 @@ require('lazy').setup {
     name = 'gruvbox-material',
     config = function()
       vim.g.gruvbox_material_transparent_background = 1
-      vim.cmd 'colorscheme gruvbox-material'
     end,
   },
+
+{ "catppuccin/nvim", 
+    name = "catppuccin", 
+    priority = 1000,
+    config = function()
+    vim.cmd.colorscheme "catppuccin"
+  end,
+  },
+
 
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
