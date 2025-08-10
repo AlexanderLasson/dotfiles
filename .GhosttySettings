@@ -1,5 +1,5 @@
-theme = GruvboxDarkHard
-cursor-color = #FFA500
+theme = catppuccin-mocha
+cursor-color = #FFFFFF
 background-opacity = 1
 font-size = 14
 window-padding-x = 0
