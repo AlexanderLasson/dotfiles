@@ -36,6 +36,7 @@ vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver25,a:blinkon0'
 vim.o.laststatus = 0
 vim.opt.termguicolors = true -- for colorizer fix
 
+
 -- Obsidian Today keymap
 vim.keymap.set('n', '<leader>dn', ':ObsidianToday<CR>', { desc = 'Obsidian Today Note (in obsidan root)' })
 
@@ -693,11 +694,40 @@ require('lazy').setup {
     end,
   },
 
-{ "catppuccin/nvim", 
-    name = "catppuccin", 
+
+
+{ "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     config = function()
-    vim.cmd.colorscheme "catppuccin"
+
+    require("catppuccin").setup({
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
+      background = { --
+        light = "latte",
+        dark = "mocha",
+      },
+      transparent_background = false,
+      float = {
+        transparent = false,
+        solid = false,
+      },
+      show_end_of_buffer = false,
+      term_colors = false,
+      dim_inactive = {
+        enabled = false,
+        shade = "dark",
+        percentage = 0.15,
+      },
+      no_italic = true,
+    })
+
+    vim.cmd.colorscheme "catppuccin" -- set theme
+    local c = require("catppuccin.palettes").get_palette()
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = c.green })
+    vim.api.nvim_set_hl(0, "LineNrAbove",  { fg = c.overlay0 })
+    vim.api.nvim_set_hl(0, "LineNrBelow",  { fg = c.overlay0 })
+    vim.api.nvim_set_hl(0, "LineNr",  { fg = c.red })
   end,
   },
 
