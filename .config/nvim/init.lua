@@ -560,7 +560,7 @@ require('lazy').setup {
       function()
         require('conform').format {
           async = true,
-          lsp_fallback = true, -- ← correct key name (not `lsp_format`)
+          lsp_fallback = true,
         }
       end,
       mode = 'n', -- or 'v' if you want visual mode support
@@ -668,23 +668,31 @@ require('lazy').setup {
     },
   },
 
-  -- web dev lsp
-  {
-    'aca/emmet-ls',
-    ft = { 'html', 'css', 'scss', 'javascriptreact', 'typescriptreact' },
-    config = function()
-      require('lspconfig').emmet_ls.setup {
-        filetypes = { 'html', 'css', 'scss', 'javascriptreact', 'typescriptreact' },
-        init_options = {
-          html = {
-            options = {
-              ['bem.enabled'] = true,
-            },
-          },
-        },
-      }
-    end,
-  },
+{
+  'aca/emmet-ls',
+  ft = { 'html', 'css', 'scss', 'javascriptreact', 'typescriptreact' },
+  config = function()
+    local lspconfig = require('lspconfig')
+    local caps = vim.lsp.protocol.make_client_capabilities()
+    local ok, cmp_caps = pcall(require, 'cmp_nvim_lsp')
+    if ok then
+      caps = cmp_caps.default_capabilities(caps)
+    end
+
+    lspconfig.emmet_ls.setup({
+      capabilities = caps,
+      filetypes = {
+        'html', 'css', 'scss',
+        'javascriptreact', 'typescriptreact',
+        -- add more if you use them:
+        -- 'svelte', 'vue', 'blade', 'twig'
+      },
+      init_options = {
+        html = { options = { ['bem.enabled'] = true } },
+      },
+    })
+  end,
+},
 
   -- colorscheme
   {
