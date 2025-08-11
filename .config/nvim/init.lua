@@ -104,7 +104,8 @@ require('lazy').setup {
     'folke/which-key.nvim',
     event = 'VimEnter',
     opts = {
-      delay = 1000,
+      preset = "helix",
+      delay = 800,
       icons = {
         mappings = vim.g.have_nerd_font,
 
@@ -155,6 +156,7 @@ require('lazy').setup {
   -- you do for a plugin at the top level, you can do for a dependency.
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
+
 
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -416,9 +418,9 @@ require('lazy').setup {
           --
           -- This may be unwanted, since they displace some of your code
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map('<leader>th', function()
+            map('<leader>ti', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
+            end, '[T]oggle [I]nlay Hints')
           end
         end,
       })
@@ -495,7 +497,6 @@ require('lazy').setup {
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
         --
 
@@ -758,9 +759,6 @@ require('lazy').setup {
       local statusline = require 'mini.statusline'
       statusline.setup { use_icons = vim.g.have_nerd_font }
 
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return '%2l:%-2v'
@@ -797,10 +795,10 @@ require('lazy').setup {
   require 'kickstart.plugins.lazygit',
   require 'kickstart.plugins.harpoon',
   require 'kickstart.plugins.obsidian',
-  require 'kickstart.plugins.fterm',
   require 'kickstart.plugins.bread',
   require 'kickstart.plugins.colorizer',
   require 'kickstart.plugins.surround',
+  require 'kickstart.plugins.toggleterm',
 
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
