@@ -34,7 +34,7 @@ vim.o.cmdheight = 0
 vim.o.conceallevel = 1
 vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver25,a:blinkon0'
 vim.o.laststatus = 0
-vim.opt.termguicolors = true -- for colorizer fix
+vim.opt.termguicolors = true 
 
 
 -- Obsidian Today keymap
@@ -699,7 +699,10 @@ require('lazy').setup {
     'sainnhe/gruvbox-material',
     name = 'gruvbox-material',
     config = function()
-      vim.g.gruvbox_material_transparent_background = 1
+      -- vim.g.gruvbox_material_transparent_background = 1
+      -- disbled for contrasts
+    vim.g.gruvbox_material_background = "hard"
+    vim.cmd.colorscheme "gruvbox-material" -- set theme
     end,
   },
 
@@ -731,7 +734,7 @@ require('lazy').setup {
       no_italic = true,
     })
 
-    vim.cmd.colorscheme "catppuccin" -- set theme
+    -- vim.cmd.colorscheme "catppuccin" -- set theme
     local c = require("catppuccin.palettes").get_palette()
     vim.api.nvim_set_hl(0, "CursorLineNr", { fg = c.green })
     vim.api.nvim_set_hl(0, "LineNrAbove",  { fg = c.overlay0 })
