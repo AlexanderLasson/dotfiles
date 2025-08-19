@@ -19,7 +19,7 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.splitright = true
 vim.o.splitbelow = true
-vim.o.list = true
+vim.o.list = false -- to hide visual space hints
 -- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.fillchars = { eob = ' ' }
 vim.o.tabstop = 2 -- Number of spaces a <Tab> in the file counts for
@@ -34,8 +34,7 @@ vim.o.cmdheight = 0
 vim.o.conceallevel = 1
 vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver25,a:blinkon0'
 vim.o.laststatus = 0
-vim.opt.termguicolors = true 
-
+vim.opt.termguicolors = true
 
 -- Obsidian Today keymap
 vim.keymap.set('n', '<leader>dn', ':ObsidianToday<CR>', { desc = 'Obsidian Today Note (in obsidan root)' })
@@ -699,9 +698,9 @@ require('lazy').setup {
     'sainnhe/gruvbox-material',
     name = 'gruvbox-material',
     config = function()
-      -- vim.g.gruvbox_material_transparent_background = 1
-      -- disbled for contrasts
+    -- vim.g.gruvbox_material_transparent_background = 1
     vim.g.gruvbox_material_background = "hard"
+    vim.g.gruvbox_material_foreground = "material"
     vim.cmd.colorscheme "gruvbox-material" -- set theme
     end,
   },
