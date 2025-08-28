@@ -701,17 +701,15 @@ require('lazy').setup {
     -- vim.g.gruvbox_material_transparent_background = 1
     vim.g.gruvbox_material_background = "hard"
     vim.g.gruvbox_material_foreground = "material"
-    vim.cmd.colorscheme "gruvbox-material" -- set theme
+    -- vim.cmd.colorscheme "gruvbox-material" -- set theme
     end,
   },
-
 
 
 { "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
     config = function()
-
     require("catppuccin").setup({
       flavour = "mocha", -- latte, frappe, macchiato, mocha
       background = { --
@@ -731,6 +729,7 @@ require('lazy').setup {
         percentage = 0.15,
       },
       no_italic = true,
+     vim.cmd.colorscheme "catppuccin" -- set theme
     })
 
     -- vim.cmd.colorscheme "catppuccin" -- set theme
