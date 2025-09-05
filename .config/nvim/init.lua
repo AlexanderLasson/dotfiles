@@ -36,6 +36,8 @@ vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver25,a:blinkon0'
 vim.o.laststatus = 0
 vim.opt.termguicolors = true
 
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+
 -- Obsidian Today keymap
 vim.keymap.set('n', '<leader>dn', ':ObsidianToday<CR>', { desc = 'Obsidian Today Note (in obsidan root)' })
 
@@ -698,10 +700,10 @@ require('lazy').setup {
     'sainnhe/gruvbox-material',
     name = 'gruvbox-material',
     config = function()
-    -- vim.g.gruvbox_material_transparent_background = 1
+    vim.g.gruvbox_material_transparent_background = 1
     vim.g.gruvbox_material_background = "hard"
     vim.g.gruvbox_material_foreground = "material"
-    -- vim.cmd.colorscheme "gruvbox-material" -- set theme
+    vim.cmd.colorscheme "gruvbox-material" -- set theme
     end,
   },
 
@@ -729,7 +731,7 @@ require('lazy').setup {
         percentage = 0.15,
       },
       no_italic = true,
-     vim.cmd.colorscheme "catppuccin" -- set theme
+     -- vim.cmd.colorscheme "catppuccin" -- set theme
     })
 
     -- vim.cmd.colorscheme "catppuccin" -- set theme
