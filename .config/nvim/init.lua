@@ -703,10 +703,37 @@ require('lazy').setup {
     vim.g.gruvbox_material_transparent_background = 1
     vim.g.gruvbox_material_background = "hard"
     vim.g.gruvbox_material_foreground = "material"
-    vim.cmd.colorscheme "gruvbox-material" -- set theme
+    -- vim.cmd.colorscheme "gruvbox-material" -- set theme
     end,
   },
 
+{
+  "rebelot/kanagawa.nvim",
+  name = "kanagawa",
+  config = function()
+    require("kanagawa").setup({
+      theme = "dragon",
+      transparent = true,
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none",
+            },
+          },
+        },
+      },
+      overrides = function(colors)
+        return {
+          NormalFloat = { bg = "none" },
+          FloatBorder = { bg = "none" },
+          FloatTitle = { bg = "none" },
+        }
+      end,
+    })
+    vim.cmd.colorscheme("kanagawa-dragon") -- set theme
+  end,
+},
 
 { "catppuccin/nvim",
     name = "catppuccin",
@@ -718,9 +745,9 @@ require('lazy').setup {
         light = "latte",
         dark = "mocha",
       },
-      transparent_background = false,
+      transparent_background = true,
       float = {
-        transparent = false,
+        transparent = true,
         solid = false,
       },
       show_end_of_buffer = false,

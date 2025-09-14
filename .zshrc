@@ -26,6 +26,8 @@ alias v="cd && source Virtual_Environments/hls_venv/bin/activate"
 alias ghost="cd $HOME/Library/Application\ Support/com.mitchellh.ghostty/"
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias vim="nvim"
+alias thinkpad="ssh goodfella@192.168.0.129"
+alias hls="ssh root@46.202.177.2"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(starship init zsh)" 
