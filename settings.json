@@ -1,0 +1,57 @@
+{
+    "workbench.startupEditor": "none",
+    "C_Cpp.updateChannel": "Insiders",
+    "code-runner.runInTerminal": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "jupyter.askForKernelRestart": false,
+    "files.autoSave": "afterDelay",
+    "python.terminal.executeInFileDir": true,
+    "[python]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.formatOnType": true
+    },
+    "editor.accessibilityPageSize": 13,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "explorer.confirmDragAndDrop": false,
+    "emmet.preferences": {},
+    "editor.fontLigatures": true,
+    "editor.codeActionsOnSave": {},
+    "terminal.explorerKind": "external",
+    "terminal.integrated.env.windows": {},
+    "workbench.layoutControl.enabled": false,
+    "workbench.editor.empty.hint": "hidden",
+    "editor.accessibilitySupport": "off",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "editor.cursorStyle": "line-thin",
+    "window.customTitleBarVisibility": "windowed",
+    "editor.minimap.enabled": false,
+    "vim.smartRelativeLine": false,
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
+    "vim.cursorStylePerMode.normal": "block",
+    "vim.cursorStylePerMode.replace": "line",
+    "vim.cursorStylePerMode.visual": "block",
+    "editor.renderLineHighlight": "none",
+    "editor.lineNumbers": "relative",
+    "editor.fontFamily": "mono",
+    "vim.highlightedyank.enable": true,
+    "vim.useSystemClipboard": true,
+    "python.venvPath": "/Users/alexanderlasson/Dev/LinkJunction/venv/",
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f",
+        "statusBar.foreground": "#ffffff",
+        "statusBar.debuggingForeground": "#ffffff"
+    }
+}
