@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CACI • Pluto AI Assistant</title>
+  <meta name="description" content="An elegant single-file landing page for a CMS AI chatbot with HTMX interactions." />
+  
+  <!-- Tailwind via CDN (Play) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: {
+              50:'#fafafa',100:'#f4f4f5',200:'#e4e4e7',300:'#d4d4d8',400:'#a1a1aa',
+              500:'#71717a',600:'#52525b',700:'#3f3f46',800:'#18181b',900:'#0a0a0b'
+            },
+            brand: {
+              50:'#fff1f1',100:'#ffe0e0',200:'#ffc7c7',300:'#ffa3a3',400:'#f87171',
+              500:'#ef4444',600:'#dc2626',700:'#b91c1c',800:'#991b1b',900:'#7f1d1d'
+            }
+          },
+          boxShadow: {
+            xl2: '0 20px 35px -15px rgba(0,0,0,0.35)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- HTMX -->
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <!-- Hyperscript (optional for tiny UX details) -->
+  <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+
+  <style>
+    /* Smooth scroll for anchor links */
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-ink-50 text-ink-900 selection:bg-brand-200/60">
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-white/70 border-b border-ink-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#top" class="flex items-center gap-2 font-semibold text-ink-800">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-6 h-6">
+  <defs>
+    <radialGradient id="plutoGrad" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#fff5f5"/>
+      <stop offset="60%" stop-color="#f5d5d5"/>
+      <stop offset="100%" stop-color="#c21f1f"/>
+    </radialGradient>
+  </defs>
+  <circle cx="24" cy="24" r="22" fill="url(#plutoGrad)" stroke="#111" stroke-width="1"/>
+  <circle cx="30" cy="18" r="6" fill="#ffffff40"/>
+</svg>
+          <span>CACI • Pluto AI</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm">
+          <a href="#features" class="hover:text-brand-600">Features</a>
+          <a href="#demo" class="hover:text-brand-600">Live Demo</a>
+          
+          <a href="#prompt" class="hover:text-brand-600">Prompt</a><a href="#faq" class="hover:text-brand-600">FAQ</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="#contact" class="hidden sm:inline-flex items-center px-3 py-2 text-sm font-medium border rounded-xl border-ink-200 hover:border-brand-400">Contact</a>
+          <a href="#demo" class="inline-flex items-center px-4 py-2 text-sm font-semibold rounded-xl text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/20">Try the Demo</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="top" class="relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <p class="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-brand-700 bg-brand-50 px-3 py-1 rounded-full ring-1 ring-brand-100">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-600"></span>
+            CMS + AI Chatbot
+          </p>
+          <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-ink-900">
+            CACI’s Pluto: an AI assistant for enterprise CMS & IRAD workflows.
+          </h1>
+          <p class="mt-4 text-lg text-ink-600">
+            Built for CACI networks: integrates with Postgres, Jira, and GitLab to surface knowledge, accelerate engineering, and document ROI for IRAD proposals.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#demo" class="px-5 py-3 rounded-xl bg-ink-900 text-white font-semibold hover:bg-ink-800 shadow-xl2">Launch Live Demo</a>
+            <a href="#features" class="px-5 py-3 rounded-xl border border-ink-200 font-semibold hover:border-brand-400">Explore Features</a>
+          </div>
+          <div class="mt-6 flex items-center gap-6 text-xs text-ink-500">
+            <div class="flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full"></span>On‑prem ready</div>
+            <div class="flex items-center gap-2"><span class="w-2 h-2 bg-blue-500 rounded-full"></span>HTMX + Django friendly</div>
+            <div class="flex items-center gap-2"><span class="w-2 h-2 bg-violet-500 rounded-full"></span>No vendor lock‑in</div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="relative rounded-2xl border border-ink-200 bg-white shadow-xl2 overflow-hidden">
+            <div class="flex items-center gap-2 px-4 py-2 border-b border-ink-100 bg-ink-50">
+              <span class="w-3 h-3 rounded-full bg-red-500"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500"></span>
+              <span class="ml-2 text-xs text-ink-500">/chat</span>
+            </div>
+            <div id="demo-console" class="p-4 space-y-3 h-[420px] overflow-auto text-sm">
+              <div class="flex gap-3">
+                <div class="w-8 h-8 rounded-full bg-brand-600/10 flex items-center justify-center text-brand-700 font-bold">U</div>
+                <div class="max-w-[80%] rounded-2xl rounded-tl-sm bg-ink-100 p-3">Summarize critical failures linked to FCA_V76_1832 and draft Jira tickets for Unity + Backend.</div>
+              </div>
+              <div class="flex gap-3 justify-end">
+                <div class="max-w-[80%] rounded-2xl rounded-tr-sm bg-brand-50 p-3 border border-brand-100">Located 12 entries. 3 critical items. Proposed tickets prepared; ready to bundle for IRAD impact log.</div>
+                <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold">AI</div>
+              </div>
+            </div>
+            <form id="chat-form"
+                  class="border-t border-ink-100 flex items-center gap-2 p-3"
+                  hx-post="data:text/html,%3Cdiv%20class%3D'text-xs%20text-ink-500%20px-3%20py-2'%3E%F0%9F%9A%80%20Message%20queued%20for%20processing...%3C%2Fdiv%3E"
+                  hx-target="#demo-console"
+                  hx-swap="beforeend">
+              <input name="q" required placeholder="Ask Pluto… (e.g., ‘compile IRAD brief for Q4’)" class="flex-1 rounded-xl border border-ink-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-300" />
+              <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logos -->
+  <section class="py-8 border-t border-ink-100 bg-white/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center text-xs uppercase tracking-widest text-ink-500">Plays nice with</p>
+      <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 opacity-80">
+        <div class="px-4 py-3 rounded-xl border border-ink-100 bg-white">Django</div>
+        <div class="px-4 py-3 rounded-xl border border-ink-100 bg-white">Postgres</div>
+        <div class="px-4 py-3 rounded-xl border border-ink-100 bg-white">Redis</div>
+        <div class="px-4 py-3 rounded-xl border border-ink-100 bg-white">HTMX</div>
+        <div class="px-4 py-3 rounded-xl border border-ink-100 bg-white">Docker</div>
+        <div class="px-4 py-3 rounded-xl border border-ink-100 bg-white">GitLab</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl font-extrabold">What makes it different</h2>
+        <p class="mt-3 text-ink-600">Purpose‑built for internal CMS knowledge. No mystery vector soup.</p>
+      </div>
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        <div class="rounded-2xl border border-ink-200 bg-white p-6 shadow">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"/></svg>
+          </div>
+          <h3 class="font-semibold">Governed Answers</h3>
+          <p class="mt-2 text-sm text-ink-600">Citations, redaction rules, and role‑based visibility so responses stay compliant.</p>
+        </div>
+        <div class="rounded-2xl border border-ink-200 bg-white p-6 shadow">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M4 6a2 2 0 0 1 2-2h6l2 2h4a2 2 0 0 1 2 2v2H4V6Zm0 6h16v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6Z"/></svg>
+          </div>
+          <h3 class="font-semibold">Postgres‑first RAG</h3>
+          <p class="mt-2 text-sm text-ink-600">Ingest models that keep your schema intact and traceable, not blobs.</p>
+        </div>
+        <div class="rounded-2xl border border-ink-200 bg-white p-6 shadow">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 8.197L6.803 9 12 5.803 17.197 9 12 11.197Z"/></svg>
+          </div>
+          <h3 class="font-semibold">HTMX‑native UX</h3>
+          <p class="mt-2 text-sm text-ink-600">Fast, progressive enhancement. Works behind VPNs & locked‑down networks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Demo (HTMX snippets) -->
+  <section id="demo" class="py-20 bg-white border-t border-ink-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="text-2xl font-bold">Inline Demo</h2>
+          <p class="mt-2 text-ink-600">This form uses HTMX to simulate a server response via a data URL—kept in this single file.</p>
+          <form class="mt-6 space-y-3"
+                hx-post="data:text/html,%3Cdiv%20class%3D'rounded-xl%20border%20border-green-200%20bg-green-50%20p-3%20text-green-800'%3EThanks!%20We%E2%80%99ll%20email%20a%20sandbox%20link.%3C%2Fdiv%3E"
+                hx-target="#demo-result"
+                hx-swap="innerHTML">
+            <div>
+              <label class="block text-sm font-medium">Work Email</label>
+              <input name="email" type="email" required class="mt-1 w-full rounded-xl border border-ink-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-300" placeholder="firstname.lastname@caci.com" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Primary Data Source</label>
+              <select name="db" class="mt-1 w-full rounded-xl border border-ink-200 px-3 py-2">
+                <option>Postgres</option>
+                <option>Jira</option>
+                <option>Confluence</option>
+                <option>GitLab</option>
+              </select>
+            </div>
+            <button type="submit" class="px-4 py-2 rounded-xl bg-ink-900 text-white font-semibold hover:bg-ink-800">Request a Sandbox</button>
+          </form>
+          <div id="demo-result" class="mt-4 text-sm text-ink-600"></div>
+        </div>
+        <div class="rounded-2xl border border-ink-200 bg-white p-6 shadow-xl2" id="prompt">
+          <h3 class="text-xl font-bold">Prompt & Guardrails</h3>
+          <p class="mt-2 text-sm text-ink-600">This mirrors the real configuration panel used by Pluto on-prem. Edit and test without leaving the page.</p>
+          <form class="mt-4 space-y-3"
+                hx-post="data:text/html,%3Cdiv%20class%3D'rounded-xl%20border%20border-brand-200%20bg-brand-50%20p-3%20text-brand-800'%3ESaved%20prompt%20profile.%3C%2Fdiv%3E"
+                hx-target="#prompt-result" hx-swap="innerHTML">
+            <div>
+              <label class="block text-sm font-medium">System Prompt</label>
+              <textarea name="system" rows="5" class="mt-1 w-full rounded-xl border border-ink-200 px-3 py-2" placeholder="You are Pluto, a CACI internal assistant. Cite sources from Postgres/Jira. Refuse external PII.">You are Pluto, a CACI internal assistant. Cite sources from Postgres, Jira, and Confluence with record IDs. Refuse to expose PII. Summaries must include links back to the original system.
+</textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Policies & Redaction</label>
+              <textarea name="policy" rows="4" class="mt-1 w-full rounded-xl border border-ink-200 px-3 py-2" placeholder="Mask emails, phone numbers, and contractor PII. Require RBAC check before showing ticket contents.">Mask emails, phone numbers, and contractor PII. Require RBAC check before showing ticket contents. Only return items tagged UNCLASS or CUI with user clearance.
+</textarea>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <label class="text-sm flex items-center justify-between">Enable RBAC gating
+                <input type="checkbox" checked class="rounded border-ink-300" />
+              </label>
+              <label class="text-sm flex items-center justify-between">Require citations
+                <input type="checkbox" checked class="rounded border-ink-300" />
+              </label>
+            </div>
+            <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">Save Profile</button>
+          </form>
+          <div id="prompt-result" class="mt-3 text-sm"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing with HTMX toggle -->
+  
+
+  <!-- FAQ (accordion using details/summary) -->
+  <section id="faq" class="py-20 bg-white border-t border-ink-100">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold">FAQ</h2>
+      <div class="mt-6 space-y-3">
+        <details class="group rounded-xl border border-ink-200 bg-white p-4">
+          <summary class="cursor-pointer font-medium flex items-center justify-between">How do you connect to Postgres?<span class="text-ink-400 group-open:rotate-180 transition">⌄</span></summary>
+          <div class="mt-3 text-sm text-ink-700">Use your existing read replica or a restricted user. We provide a minimal schema + migrations for content indexing. No write access required.</div>
+        </details>
+        <details class="group rounded-xl border border-ink-200 bg-white p-4">
+          <summary class="cursor-pointer font-medium flex items-center justify-between">Can it run offline?<span class="text-ink-400 group-open:rotate-180 transition">⌄</span></summary>
+          <div class="mt-3 text-sm text-ink-700">Yes. HTMX keeps the UX snappy without SPA bundlers. Models can be local or proxied to approved endpoints.</div>
+        </details>
+        <details class="group rounded-xl border border-ink-200 bg-white p-4">
+          <summary class="cursor-pointer font-medium flex items-center justify-between">What about PII and redaction?<span class="text-ink-400 group-open:rotate-180 transition">⌄</span></summary>
+          <div class="mt-3 text-sm text-ink-700">We ship rule‑based filters and allowlist prompts. Sensitive fields are masked before generation and never persisted to logs.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-2xl border border-ink-200 bg-white p-6 shadow">
+        <h2 class="text-2xl font-bold">Get in touch</h2>
+        <p class="mt-2 text-ink-600">Tell us about your stack and what you want the bot to do.</p>
+        <form class="mt-6 grid sm:grid-cols-2 gap-4"
+              hx-post="data:text/html,%3Cdiv%20class%3D'rounded-xl%20border%20border-green-200%20bg-green-50%20p-3%20text-green-800'%3EThanks%2C%20we%27ll%20reach%20out%20within%2024h.%3C%2Fdiv%3E"
+              hx-target="#contact-result" hx-swap="innerHTML">
+          <div>
+            <label class="block text-sm font-medium">Name</label>
+            <input name="name" required class="mt-1 w-full rounded-xl border border-ink-200 px-3 py-2" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Email</label>
+            <input type="email" name="email" required class="mt-1 w-full rounded-xl border border-ink-200 px-3 py-2" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-sm font-medium">Message</label>
+            <textarea name="message" rows="4" class="mt-1 w-full rounded-xl border border-ink-200 px-3 py-2" placeholder="Postgres + Jira integration, RBAC for ops, etc."></textarea>
+          </div>
+          <div class="sm:col-span-2 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs text-ink-500">
+              <input id="nda" type="checkbox" class="rounded border-ink-300" />
+              <label for="nda">NDA required</label>
+            </div>
+            <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700">Send</button>
+          </div>
+        </form>
+        <div id="contact-result" class="mt-4"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 border-t border-ink-100 bg-white/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-ink-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© <span id="year"></span> Pluto CMS. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="#top" class="hover:text-ink-700">Back to top ↑</a>
+        <a href="#" class="hover:text-ink-700" hx-on:click="alert('Docs coming soon!')">Docs</a>
+        <a href="#" class="hover:text-ink-700" hx-on:click="alert('Status: All systems operational')">Status</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear()
+  </script>
+</body>
+</html>
