@@ -28,11 +28,11 @@
 {
   "key": "ctrl+n",
   "command": "workbench.action.quickOpenSelectNext",
-  "when": "editorTextFocus && vim.active"
+  "when": "inQuickOpen"
 },
 {
   "key": "ctrl+p",
   "command": "workbench.action.quickOpenSelectPrevious",
-  "when": "editorTextFocus && vim.active"
-}
+  "when": "inQuickOpen"
+},
 ]
