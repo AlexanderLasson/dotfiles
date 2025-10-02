@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CACI • Pluto — CMS + AI Assistant</title>
+  <meta name="description" content="Pluto is CACI's modern CMS platform with an AI assistant. HTMX-powered prompt UI, Tailwind CSS, and a polished roadmap for stakeholders." />
+
+  <!-- Tailwind (Play CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            caci: {
+              red: '#D71920', // CACI-red (approx)
+              black: '#111111',
+              gray: {
+                25: '#FCFCFD',
+                50: '#F9FAFB',
+                100: '#F2F4F7',
+                200: '#EAECF0',
+                300: '#D0D5DD',
+                400: '#98A2B3',
+                500: '#667085',
+                600: '#475467',
+                700: '#344054',
+                800: '#1D2939',
+                900: '#101828'
+              }
+            }
+          },
+          boxShadow: {
+            soft: '0 10px 30px -10px rgba(0,0,0,0.25)'
+          },
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- HTMX -->
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script>
+    // Dark-mode persistence
+    const themeKey = 'pluto-theme';
+    function applyStoredTheme() {
+      const stored = localStorage.getItem(themeKey);
+      if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem(themeKey, isDark ? 'dark' : 'light');
+    }
+    applyStoredTheme();
+  </script>
+
+  <style>
+    /* Hide default scrollbars on chat area for a cleaner look */
+    .thin-scroll::-webkit-scrollbar { width: 6px; }
+    .thin-scroll::-webkit-scrollbar-thumb { background: #bbb; border-radius: 4px; }
+    .dark .thin-scroll::-webkit-scrollbar-thumb { background: #444; }
+  </style>
+</head>
+<body class="bg-white text-caci-gray-800 dark:bg-caci-black dark:text-caci-gray-100 antialiased">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/70 dark:bg-caci-black/70 border-b border-caci-gray-200 dark:border-white/10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-8 w-8 rounded-xl bg-caci-red"></div>
+        <div class="text-lg font-semibold tracking-tight">CACI • Pluto</div>
+        <span class="ml-2 hidden sm:inline text-sm text-caci-gray-500 dark:text-caci-gray-400">CMS + AI Assistant</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#features" class="hover:text-caci-red transition-colors">Features</a>
+        <a href="#prompt" class="hover:text-caci-red transition-colors">AI Prompt</a>
+        <a href="#roadmap" class="hover:text-caci-red transition-colors">Roadmap</a>
+        <a href="#contact" class="hover:text-caci-red transition-colors">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="inline-flex items-center gap-2 rounded-xl border border-caci-gray-200 dark:border-white/10 px-3 py-2 text-sm hover:bg-caci-gray-50 dark:hover:bg-white/5 transition" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <svg class="h-4 w-4 hidden dark:block" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.64 13A9 9 0 1111 2.36a7 7 0 1010.64 10.64z"/></svg>
+          <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 18a6 6 0 100-12 6 6 0 000 12zm0 4a1 1 0 011 1v1h-2v-1a1 1 0 011-1zm0-22a1 1 0 011-1v-1h-2v1a1 1 0 011 1zM1 13a1 1 0 011-1H3v2H2a1 1 0 01-1-1zm20 0a1 1 0 011-1h1v2h-1a1 1 0 01-1-1zM4.22 19.78a1 1 0 011.42 0l.7.7-1.41 1.42-.71-.71a1 1 0 010-1.41zM17.66 6.34a1 1 0 011.41 0l.71.71-1.41 1.41-.71-.71a1 1 0 010-1.41zM4.22 4.22a1 1 0 011.42 0l.7.7-1.41 1.42-.71-.71a1 1 0 010-1.41zM17.66 17.66a1 1 0 011.41 0l.71.71-1.41 1.41-.71-.71a1 1 0 010-1.41z"/></svg>
+          <span class="hidden sm:inline">Theme</span>
+        </button>
+        <a href="#prompt" class="inline-flex items-center rounded-xl bg-caci-red px-3 py-2 text-sm font-medium text-white shadow-soft hover:opacity-95">Try Pluto</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative">
+    <div class="absolute inset-x-0 -top-20 -z-10 h-40 bg-gradient-to-b from-caci-red/10 to-transparent dark:from-caci-red/15"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+          A modern CMS platform for CACI—
+          <span class="text-caci-red">powered by AI</span>
+        </h1>
+        <p class="text-lg text-caci-gray-600 dark:text-caci-gray-300 max-w-2xl">
+          Pluto unifies content, telemetry, and workflows into one secure platform. The HTMX prompt UI plugs into OpenWebUI so teams can query data, draft content, and automate routine tasks.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#prompt" class="inline-flex items-center rounded-xl bg-caci-red px-4 py-2.5 text-sm font-semibold text-white shadow-soft hover:opacity-95">Launch AI Prompt</a>
+          <a href="#roadmap" class="inline-flex items-center rounded-xl border border-caci-gray-200 dark:border-white/10 px-4 py-2.5 text-sm hover:bg-caci-gray-50 dark:hover:bg-white/5">View Roadmap</a>
+        </div>
+        <div class="flex items-center gap-6 pt-4 text-sm text-caci-gray-500 dark:text-caci-gray-400">
+          <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-caci-red"></span> Internal network ready</div>
+          <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-caci-gray-400"></span> Role-based access</div>
+          <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-caci-gray-400"></span> Audit logging</div>
+        </div>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="rounded-2xl border border-caci-gray-200 dark:border-white/10 bg-white dark:bg-black/40 p-4 shadow-soft">
+          <div class="rounded-xl bg-gradient-to-br from-caci-red/20 via-white to-caci-gray-50 dark:from-caci-red/10 dark:via-black dark:to-caci-black p-6">
+            <p class="text-sm font-medium text-caci-gray-600 dark:text-caci-gray-300">Enterprise-ready foundation</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-caci-red"></span> Django + DRF + Postgres</li>
+              <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-caci-red"></span> HTMX for lightweight interactivity</li>
+              <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-caci-red"></span> OpenWebUI integration for LLM chat</li>
+              <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-caci-red"></span> Tailwind, dark mode, clean UI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="rounded-2xl border border-caci-gray-200 dark:border-white/10 p-6 bg-white dark:bg-black/40">
+        <h3 class="font-semibold">Unified Content</h3>
+        <p class="mt-2 text-sm text-caci-gray-600 dark:text-caci-gray-300">Manage assets, documentation, and operational data in one place with clean admin experiences.</p>
+      </div>
+      <div class="rounded-2xl border border-caci-gray-200 dark:border-white/10 p-6 bg-white dark:bg-black/40">
+        <h3 class="font-semibold">AI Assistant</h3>
+        <p class="mt-2 text-sm text-caci-gray-600 dark:text-caci-gray-300">Ask natural-language questions over your Postgres data via OpenWebUI with role-aware controls.</p>
+      </div>
+      <div class="rounded-2xl border border-caci-gray-200 dark:border-white/10 p-6 bg-white dark:bg-black/40">
+        <h3 class="font-semibold">Extensible</h3>
+        <p class="mt-2 text-sm text-caci-gray-600 dark:text-caci-gray-300">HTMX endpoints keep frontend simple while letting you ship features rapidly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Prompt UI (HTMX) -->
+  <section id="prompt" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <div class="rounded-2xl border border-caci-gray-200 dark:border-white/10 bg-white dark:bg-black/40 p-4 sm:p-6 shadow-soft">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-semibold">Pluto Assistant</h2>
+        <span class="text-xs text-caci-gray-500 dark:text-caci-gray-400">HTMX → Django → OpenWebUI</span>
+      </div>
+
+      <!-- Chat Area -->
+      <div id="chat" class="mt-4 h-[360px] overflow-y-auto thin-scroll space-y-3 pr-1" aria-live="polite">
+        <!-- Example bot message placeholder -->
+        <div class="flex gap-3">
+          <div class="h-8 w-8 rounded-full bg-caci-red/90 shrink-0"></div>
+          <div class="max-w-[80%] rounded-2xl rounded-tl-none bg-caci-gray-100 dark:bg-white/5 border border-caci-gray-200 dark:border-white/10 px-4 py-3 text-sm">
+            Hi! I’m Pluto. Ask me about CMS content, Jira issues, or data in our Postgres instance.
+          </div>
+        </div>
+      </div>
+
+      <!-- Prompt Form -->
+      <form
+        id="prompt-form"
+        class="mt-4 flex items-end gap-3"
+        hx-post="/ai/prompt"         
+        hx-trigger="submit" 
+        hx-target="#chat" 
+        hx-swap="beforeend" 
+        hx-indicator="#sending"
+      >
+        <div class="flex-1">
+          <label for="prompt-input" class="sr-only">Your prompt</label>
+          <textarea id="prompt-input" name="prompt" rows="2" required
+            class="w-full rounded-2xl border border-caci-gray-200 dark:border-white/10 bg-white dark:bg-black/40 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-caci-red/50"
+            placeholder="Ask Pluto… e.g., “Summarize open issues for fsefes this week.”"></textarea>
+          <p class="mt-2 text-xs text-caci-gray-500 dark:text-caci-gray-400">Shift+Enter for newline • Enter to send</p>
+        </div>
+        <button type="submit" class="inline-flex items-center gap-2 rounded-2xl bg-caci-red px-4 py-2.5 text-sm font-semibold text-white shadow-soft hover:opacity-95">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.01 21l20.99-9L2.01 3 2 10l15 2-15 2z"/></svg>
+          Send
+        </button>
+      </form>
+
+      <!-- Sending indicator rendered by HTMX -->
+      <div id="sending" class="htmx-indicator mt-3 text-xs text-caci-gray-500 dark:text-caci-gray-400">Thinking…</div>
+
+      <script>
+        // Optional: simple UX to keep chat scrolled to bottom
+        document.getElementById('prompt-form').addEventListener('htmx:afterSwap', () => {
+          const chat = document.getElementById('chat');
+          chat.scrollTop = chat.scrollHeight;
+        });
+        // Submit with Enter, newline with Shift+Enter
+        const input = document.getElementById('prompt-input');
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            document.getElementById('prompt-form').requestSubmit();
+          }
+        });
+      </script>
+
+      <!--
+        SERVER CONTRACT (Django):
+        Endpoint: POST /ai/prompt
+        Body: application/x-www-form-urlencoded (prompt=<text>) or JSON
+        Response: an HTML fragment that contains two appended bubbles:
+          1) the user bubble; 2) the assistant bubble. Example below.
+
+        Example Django view should return something like:
+          <div class="flex gap-3 justify-end"> ...user bubble... </div>
+          <div class="flex gap-3"> ...assistant bubble... </div>
+      -->
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section id="roadmap" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex items-center justify-between">
+      <h2 class="text-xl font-semibold">Product Roadmap</h2>
+      <span class="text-xs text-caci-gray-500 dark:text-caci-gray-400">Status for funding review</span>
+    </div>
+
+    <div class="mt-6 grid lg:grid-cols-5 md:grid-cols-3 gap-6">
+      <!-- Phase 0 -->
+      <article class="rounded-2xl border border-caci-gray-200 dark:border-white/10 p-5 bg-white dark:bg-black/40">
+        <header class="flex items-center justify-between">
+          <h3 class="font-semibold">Phase 0 — Prototype</h3>
+          <span class="text-xs px-2 py-1 rounded-lg bg-caci-red/10 text-caci-red">Done</span>
+        </header>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li>✅ Django project, Unfold admin</li>
+          <li>✅ DRF endpoints (Unity telemetry)</li>
+          <li>✅ Postgres baseline schema</li>
+        </ul>
+      </article>
+
+      <!-- Phase 1 -->
+      <article class="rounded-2xl border border-caci-gray-200 dark:border-white/10 p-5 bg-white dark:bg-black/40">
+        <header class="flex items-center justify-between">
+          <h3 class="font-semibold">Phase 1 — Data Ingest</h3>
+          <span class="text-xs px-2 py-1 rounded-lg bg-caci-red/10 text-caci-red">In Progress</span>
+        </header>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li>⬤ CSV import + validation</li>
+          <li>⬤ Jira integration (create/link issues)</li>
+          <li>⬤ Role-based access (RBAC)</li>
+        </ul>
+      </article>
+
+      <!-- Phase 2 -->
+      <article class="rounded-2xl border border-caci-gray-200 dark:border-white/10 p-5 bg-white dark:bg-black/40">
+        <header class="flex items-center justify-between">
+          <h3 class="font-semibold">Phase 2 — AI Assistant</h3>
+          <span class="text-xs px-2 py-1 rounded-lg bg-caci-gray-100 text-caci-gray-700 dark:bg-white/10 dark:text-caci-gray-200">Planned</span>
+        </header>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li>◻ HTMX prompt → Django proxy</li>
+          <li>◻ OpenWebUI (self-hosted) connector</li>
+          <li>◻ Guardrails, audit logs</li>
+        </ul>
+      </article>
+
+      <!-- Phase 3 -->
+      <article class="rounded-2xl border border-caci-gray-200 dark:border-white/10 p-5 bg-white dark:bg-black/40">
+        <header class="flex items-center justify-between">
+          <h3 class="font-semibold">Phase 3 — Integrations</h3>
+          <span class="text-xs px-2 py-1 rounded-lg bg-caci-gray-100 text-caci-gray-700 dark:bg-white/10 dark:text-caci-gray-200">Planned</span>
+        </header>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li>◻ GitLab CI/CD webhooks</li>
+          <li>◻ SSO (SAML/OIDC)</li>
+          <li>◻ Observability (OpenTelemetry)</li>
+        </ul>
+      </article>
+
+      <!-- Phase 4 -->
+      <article class="rounded-2xl border border-caci-gray-200 dark:border-white/10 p-5 bg-white dark:bg-black/40">
+        <header class="flex items-center justify-between">
+          <h3 class="font-semibold">Phase 4 — Enterprise</h3>
+          <span class="text-xs px-2 py-1 rounded-lg bg-caci-gray-100 text-caci-gray-700 dark:bg-white/10 dark:text-caci-gray-200">Planned</span>
+        </header>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li>◻ Fine-grained permissions</li>
+          <li>◻ Backups & retention policies</li>
+          <li>◻ SLA & on-call playbooks</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- Timeline Ribbon -->
+    <div class="mt-8 rounded-2xl border border-caci-gray-200 dark:border-white/10 bg-white dark:bg-black/40 p-5">
+      <div class="text-sm text-caci-gray-600 dark:text-caci-gray-300">Q4 2025 Target</div>
+      <div class="mt-3 w-full bg-caci-gray-200/50 dark:bg-white/10 rounded-full h-2">
+        <div class="h-2 rounded-full bg-caci-red" style="width: 28%"></div>
+      </div>
+      <p class="mt-2 text-xs text-caci-gray-500 dark:text-caci-gray-400">Progress estimate toward MVP.</p>
+    </div>
+  </section>
+
+  <!-- Contact / CTA -->
+  <section id="contact" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <div class="rounded-2xl border border-caci-gray-200 dark:border-white/10 bg-white dark:bg-black/40 p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <h3 class="font-semibold">Ready to pilot Pluto?</h3>
+        <p class="text-sm text-caci-gray-600 dark:text-caci-gray-300 mt-1">Deploy on internal network with Postgres + OpenWebUI.</p>
+      </div>
+      <a href="#prompt" class="inline-flex items-center rounded-xl bg-caci-red px-4 py-2.5 text-sm font-semibold text-white shadow-soft hover:opacity-95">Open Prompt</a>
+    </div>
+  </section>
+
+  <footer class="border-t border-caci-gray-200 dark:border-white/10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between text-xs text-caci-gray-500 dark:text-caci-gray-400">
+      <div>© <span id="year"></span> CACI • Pluto</div>
+      <div>Built with Django, HTMX, Tailwind</div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
