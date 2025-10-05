@@ -36,11 +36,13 @@ vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver25,a:blinkon0'
 vim.o.laststatus = 0
 vim.opt.termguicolors = true
 
+-- LSP info manual popup
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 
 -- Obsidian Today keymap
 vim.keymap.set('n', '<leader>dn', ':ObsidianToday<CR>', { desc = 'Obsidian Today Note (in obsidan root)' })
 
+-- Clear highlights
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- neotree map
