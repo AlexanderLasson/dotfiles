@@ -733,7 +733,7 @@ require('lazy').setup {
         }
       end,
     })
-    vim.cmd.colorscheme("kanagawa-dragon") -- set theme
+    -- vim.cmd.colorscheme("kanagawa-dragon") -- set theme
   end,
 },
 
@@ -760,7 +760,7 @@ require('lazy').setup {
         percentage = 0.15,
       },
       no_italic = true,
-     -- vim.cmd.colorscheme "catppuccin" -- set theme
+     vim.cmd.colorscheme "catppuccin" -- set theme
     })
 
     -- vim.cmd.colorscheme "catppuccin" -- set theme
