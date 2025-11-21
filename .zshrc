@@ -14,8 +14,8 @@ export ZSH="$HOME/.oh-my-zsh"
 export PATH="/usr/local/mysql/bin:$PATH"
 
 
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions web-search)
-source $ZSH/oh-my-zsh.sh
+# plugins=(git zsh-syntax-highlighting zsh-autosuggestions web-search)
+# source $ZSH/oh-my-zsh.sh
 
 alias nv="nvim"
 alias notes="cd && cd Documents/Obsidian\ Vault && nv"
