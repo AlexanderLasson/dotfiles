@@ -18,7 +18,7 @@ export PATH="/usr/local/mysql/bin:$PATH"
 # source $ZSH/oh-my-zsh.sh
 
 alias nv="nvim"
-alias notes="cd && cd Documents/Obsidian\ Vault && nv"
+alias notes="cd && cd oVault && nv"
 alias t="tmux"
 alias ta="tmux attach"
 alias lg="lazygit"

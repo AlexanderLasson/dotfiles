@@ -705,7 +705,7 @@ require('lazy').setup {
     vim.g.gruvbox_material_transparent_background = 0
     vim.g.gruvbox_material_background = "hard"
     vim.g.gruvbox_material_foreground = "material"
-    vim.cmd.colorscheme "gruvbox-material" -- set theme
+    -- vim.cmd.colorscheme "gruvbox-material" -- set theme
     end,
   },
 
@@ -733,7 +733,7 @@ require('lazy').setup {
         }
       end,
     })
-    -- vim.cmd.colorscheme("kanagawa-dragon") -- set theme
+    vim.cmd.colorscheme("kanagawa-dragon") -- set theme
   end,
 },
 
