@@ -1,0 +1,50 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "ensure_final_newline_on_save": false,
+  "ssh_connections": [
+    {
+      "host": "192.168.0.129",
+      "username": "goodfella",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/goodfella"
+          ]
+        }
+      ],
+      "nickname": "Thinkpad"
+    },
+    {
+      "host": "46.202.177.2",
+      "username": "root",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/root"
+          ]
+        }
+      ],
+      "nickname": "HLS vps"
+    }
+  ],
+  "format_on_save": "off",
+  "show_edit_predictions": false,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "icon_theme": "Zed (Default)",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": "Vesper"
+}
