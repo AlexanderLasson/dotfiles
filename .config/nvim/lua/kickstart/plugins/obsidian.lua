@@ -10,7 +10,7 @@ return {
     workspaces = {
       {
         name = "Obsidian Vault",
-        path = "~/Documents/Obsidian Vault/",
+        path = "~/oVault",
       },
       },
     daily_notes = {
