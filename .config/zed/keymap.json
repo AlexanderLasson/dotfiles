@@ -15,7 +15,13 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-l": "workspace::ActivatePaneRight"
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "space space": "file_finder::Toggle",
+      "space e": "project_panel::ToggleFocus",
+      "space g g": "editor::GoToDefinition",
+      "space g r": "editor::FindAllReferences",
+      "space f f": "file_finder::Toggle",
+      "space f w": "workspace::NewSearch"
     }
   },
   {

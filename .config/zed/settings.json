@@ -1,5 +1,27 @@
 {
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "effort": "medium",
+        "model": "default",
+        "mode": "default"
+      },
+      "type": "registry"
+    }
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
   "git_panel": {
+    "dock": "left",
     "tree_view": true
   },
   "project_panel": {
@@ -16,8 +38,36 @@
     "metrics": false
   },
   "vim_mode": true,
-  "icon_theme": "Catppuccin Mocha",
-  "ui_font_size": 16,
+  "vim": {
+    "use_system_clipboard":"always",
+    "use_smartcase_find": true,
+  },
+  "relative_line_numbers":"enabled",
+  "cursor_blink": false,
+  "icon_theme": "Zed (Default)",
+  "ui_font_size": 18.0,
   "buffer_font_size": 15,
-  "theme": "Gruvbox Dark Hard",
+  "theme": "Gruvbox Material Dark Hard",
+  "theme_overrides": { // to remove italics
+    "Gruvbox Material Dark Hard": {
+      "syntax":{
+        "comment": {
+          "font_style": "normal"
+        },
+        "keyword": {
+          "font_style":"normal"
+        },
+        "function":{
+          "font_style":"normal"
+        },
+        "conditional":{
+          "font_style":"normal"
+        },
+        "repeat":{
+          "font_style":"normal"
+        }
+      }
+    }
+
+  }
 }
