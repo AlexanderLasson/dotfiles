@@ -1,4 +1,11 @@
 {
+  "edit_predictions": {
+    "provider": "zed"
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "proxy": "",
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
@@ -28,10 +35,14 @@
     "dock": "left",
     "hide_gitignore": false
   },
-  "disable_ai": false,
+  "disable_ai": true,
   "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "ensure_final_newline_on_save": false,
+  "cursor_shape": "block",
   "format_on_save": "off",
+    "buffer_font_features": {
+      "calt": false
+    },
   "show_edit_predictions": true,
   "telemetry": {
     "diagnostics": false,
@@ -44,10 +55,18 @@
   },
   "relative_line_numbers":"enabled",
   "cursor_blink": false,
-  "icon_theme": "Zed (Default)",
-  "ui_font_size": 18.0,
-  "buffer_font_size": 15,
-  "theme": "Gruvbox Material Dark Hard",
+  "icon_theme": {
+    "mode": "light",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "ui_font_size": 24.0,
+  "buffer_font_size": 24,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "VSCode Dark Modern"
+  },
   "theme_overrides": { // to remove italics
     "Gruvbox Material Dark Hard": {
       "syntax":{

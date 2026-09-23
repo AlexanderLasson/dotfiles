@@ -6,7 +6,10 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-l": "workspace::ActivatePaneRight"
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-shift-p": "command_palette::Toggle",
+      "ctrl-shift-f": "project_search::ToggleFocus",
     }
   },
   {
@@ -16,12 +19,9 @@
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-l": "workspace::ActivatePaneRight",
-      "space space": "file_finder::Toggle",
-      "space e": "project_panel::ToggleFocus",
-      "space g g": "editor::GoToDefinition",
-      "space g r": "editor::FindAllReferences",
-      "space f f": "file_finder::Toggle",
-      "space f w": "workspace::NewSearch"
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-shift-p": "command_palette::Toggle",
+      "ctrl-shift-f": "project_search::ToggleFocus",
     }
   },
   {
@@ -39,7 +39,10 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-l": "workspace::ActivatePaneRight"
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-shift-p": "command_palette::Toggle",
+      "ctrl-shift-f": "project_search::ToggleFocus",
     }
   }
 ]
