@@ -22,19 +22,13 @@ alias notes="cd && cd oVault && nv"
 alias t="tmux"
 alias ta="tmux attach"
 alias lg="lazygit"
-alias v="cd && source Virtual_Environments/hls_venv/bin/activate"
 alias ghost="cd $HOME/Library/Application\ Support/com.mitchellh.ghostty/"
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias vim="nvim"
 alias fn='nvim $(fzf)'
-alias thinkpad="ssh goodfella@192.168.0.129"
-alias hls="ssh root@46.202.177.2"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-eval "$(starship init zsh)" 
+eval "$(starship init zsh)"
 
-# --- Android dev (hls-app) ---
-export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
-export ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
-export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin:$JAVA_HOME/bin:$PATH"
-# --- end Android dev ---
+# Machine-local overrides (SSH aliases, secrets, per-machine tweaks) — not tracked in git
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
