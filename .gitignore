@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# tmux plugin manager clones — managed by tpm, not hand-committed
+.tmux/plugins/
+
+# editor swap files
+*.swp
+*.swo
+
+# Zed prompt library lock file — pure runtime churn, not config
+.config/zed/prompts/prompts-library-db.0.mdb/lock.mdb

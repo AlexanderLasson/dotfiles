@@ -23,7 +23,6 @@ alias t="tmux"
 alias ta="tmux attach"
 alias lg="lazygit"
 alias ghost="cd $HOME/Library/Application\ Support/com.mitchellh.ghostty/"
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias vim="nvim"
 alias fn='nvim $(fzf)'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
