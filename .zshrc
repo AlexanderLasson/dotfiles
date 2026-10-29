@@ -11,7 +11,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export PATH="/usr/local/mysql/bin:$PATH"
+export PATH="$HOME/.local/bin:/usr/local/mysql/bin:$PATH"
 
 
 # plugins=(git zsh-syntax-highlighting zsh-autosuggestions web-search)
